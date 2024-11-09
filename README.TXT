@@ -19,6 +19,8 @@
 
 %%%%%%%%%%%%%%%%%%%%%%% Aplicacion %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 - Se definen dos rutas en el BluePrint main para la pagina principal y el login de los usuarios
-- Se añade la inicialización del BluePrint main en __init__.py de app
+- Se define otro BluePrint para Books con una ruta /Books/
+- Se añade la inicialización de los BluePrints en __init__.py de app
+- Se crean templates para visualizar las paginas definidas en las rutas creadas
 
 
