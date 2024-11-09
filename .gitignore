@@ -1,0 +1,6 @@
+.venv
+.env
+.flaskenv
+tempCode*
+__pycache__/
+db_shema/
