@@ -18,6 +18,7 @@
 - Para algunas variables necesarias para configurar extensiones usar objeto Config dentro de config.py.
 
 %%%%%%%%%%%%%%%%%%%%%%% Aplicacion %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-- Usar una ruta basica '/' definida directamente en __init__.py para probar si funciona el servidor
+- Se definen dos rutas en el BluePrint main para la pagina principal y el login de los usuarios
+- Se añade la inicialización del BluePrint main en __init__.py de app
 
 
