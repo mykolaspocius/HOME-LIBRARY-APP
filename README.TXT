@@ -27,5 +27,8 @@
 - Se crean los formularios para Login y Registro
 - Creados los modelos para manejar usuarios y permisos
 - Creada la base de datos usando migrate y sqlalchemy
+- Registrar algunos app.cli comandos para poblar la base de datos con valores de permisos, roles y usuario admin
+- Añadir .env para guardar las credenciales de admin
+- Creado el código en rutas de main para login y registro de usuarios en la base de datos
 
 
