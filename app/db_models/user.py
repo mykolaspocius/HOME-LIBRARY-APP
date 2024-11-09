@@ -2,6 +2,7 @@ from app.extentions import sql_db
 from sqlalchemy import String,Integer,ForeignKey,Column
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin
 
 class RolPermiso(sql_db.Model):
     __tablename__ = 'rol_permiso'
@@ -20,7 +21,7 @@ class Rol(sql_db.Model):
     usuarios: Mapped[list["Usuario"]] = relationship(back_populates="rol")
     permisos: Mapped[list["Permiso"]] = relationship(secondary=RolPermiso.__table__, back_populates="roles")
 
-class Usuario(sql_db.Model):
+class Usuario(UserMixin,sql_db.Model):
     __tablename__ = 'usuarios'
     id : Mapped[int] = mapped_column(Integer, primary_key=True)
     nombre : Mapped[str] = mapped_column(String(20),nullable=False)

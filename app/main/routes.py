@@ -1,8 +1,9 @@
 from app.main import bp
-from flask import flash, render_template
+from flask import flash, render_template, redirect,url_for
 from app.forms import UserLoginForm,UserRegisterForm
 from app.db_models.user import Usuario
 from app.extentions import sql_db
+from flask_login import current_user,login_user,logout_user
 
 @bp.route('/')
 def index():
@@ -17,7 +18,8 @@ def login():
             form.username.errors.append(f"Usuario {form.username.data} no existe.")
         else:
             if user.check_password(form.password.data):
-                return "Logueado con exito"
+                login_user(user,remember=form.remember_me.data)
+                return redirect(url_for('main.index'))
             else:
                 form.password.errors.append(f"El password para {form.username.data} incorrecto.")
     
@@ -36,7 +38,8 @@ def register():
             user.set_password(form.password.data)
             sql_db.session.add(user)
             sql_db.session.commit()
-            return "Registrado con exito"
+            flash(f"Usuario {user.nombre} registrado")
+            return redirect(url_for('main.login'))
         else:
             form.username.errors.append(f"Usuario con nombre {form.username.data} ya existe.")
     
@@ -44,4 +47,9 @@ def register():
         for error in errors:
             flash(f'Error en {getattr(form, field).label.text}: {error}')
     return render_template("main/register.html",form=form)
+
+@bp.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('main.index'))
 

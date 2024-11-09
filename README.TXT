@@ -30,5 +30,7 @@
 - Registrar algunos app.cli comandos para poblar la base de datos con valores de permisos, roles y usuario admin
 - Añadir .env para guardar las credenciales de admin
 - Creado el código en rutas de main para login y registro de usuarios en la base de datos
+- Añadida extension Flask-Login
+- Configurado el login y logout de los usuarios usando la anterior extensión
 
 
