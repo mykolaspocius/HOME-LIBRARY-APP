@@ -25,5 +25,7 @@
 - Se añade la extención Flask-wtf para crear formularios
 - Se añade la ruta de registro usuarios a main
 - Se crean los formularios para Login y Registro
+- Creados los modelos para manejar usuarios y permisos
+- Creada la base de datos usando migrate y sqlalchemy
 
 
