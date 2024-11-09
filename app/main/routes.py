@@ -1,5 +1,6 @@
+from urllib.parse import urlsplit
 from app.main import bp
-from flask import flash, render_template, redirect,url_for
+from flask import flash, render_template, redirect, request,url_for
 from app.forms import UserLoginForm,UserRegisterForm
 from app.db_models.user import Usuario
 from app.extentions import sql_db
@@ -19,7 +20,10 @@ def login():
         else:
             if user.check_password(form.password.data):
                 login_user(user,remember=form.remember_me.data)
-                return redirect(url_for('main.index'))
+                next_page = request.args.get('next')
+                if not next_page or urlsplit(next_page).netloc != '':
+                    next_page = url_for('main.index')
+                return redirect(next_page)
             else:
                 form.password.errors.append(f"El password para {form.username.data} incorrecto.")
     

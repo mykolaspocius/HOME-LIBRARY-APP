@@ -14,6 +14,7 @@ def create_app(config_class=Config):
     sql_db.init_app(app)
     migrate.init_app(app,sql_db)
     login_manager.init_app(app)
+    login_manager.login_view = 'main.login'
 
     @login_manager.user_loader
     def load_user(user_id):
