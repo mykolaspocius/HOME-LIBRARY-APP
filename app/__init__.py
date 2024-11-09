@@ -14,4 +14,7 @@ def create_app(config_class=Config):
     from app.main import bp as main_bp
     app.register_blueprint(main_bp)
 
+    from app.books import bp as books_bp
+    app.register_blueprint(books_bp,url_prefix='/books')
+
     return app

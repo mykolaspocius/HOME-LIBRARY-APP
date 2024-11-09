@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+    <head>
+      {% if title %}
+        <title>{{ title }} - Biblioteca</title>
+      {% else %}
+        <title>Biblioteca</title>
+      {% endif %}
+    </head>
+    <body>
+        <div>Biblioteca: 
+          <a href="{{ url_for('main.index') }}">Inicio</a>
+          <a href="{{ url_for('books.index') }}">Libros</a>
+          <a href="{{url_for('main.login')  }}">Login</a>
+        </div>
+        <hr>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul>
+                {% for message in messages %}
+                  <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>
