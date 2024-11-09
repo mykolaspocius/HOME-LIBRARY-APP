@@ -22,5 +22,8 @@
 - Se define otro BluePrint para Books con una ruta /Books/
 - Se añade la inicialización de los BluePrints en __init__.py de app
 - Se crean templates para visualizar las paginas definidas en las rutas creadas
+- Se añade la extención Flask-wtf para crear formularios
+- Se añade la ruta de registro usuarios a main
+- Se crean los formularios para Login y Registro
 
 

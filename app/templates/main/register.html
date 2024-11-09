@@ -1,13 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-        <h1>Introduzca su nombre de usuario y contraseña</h1>
+        <h1>Introduzca los siguientes datos</h1>
         <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         <p>{{ form.username.label }} : {{ form.username(size=32) }}</p>
         <p>{{ form.password.label }} : {{ form.password(size=32) }}</p>
-        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+        <p>{{ form.password_repeat.label }} : {{ form.password_repeat(size=32) }}</p>
         <p>{{ form.submit() }}</p>
         </form>
-        <p>Soy nuev@, <a href="{{ url_for('main.register') }}">Registrarme</a></p>
 {% endblock %}
