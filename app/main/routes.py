@@ -1,6 +1,7 @@
 from app.main import bp
 from flask import flash, render_template
 from app.forms import UserLoginForm,UserRegisterForm
+from app.db_models.user import Usuario
 
 @bp.route('/')
 def index():
