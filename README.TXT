@@ -34,5 +34,11 @@
 - Configurado el login y logout de los usuarios usando la anterior extensión
 - Añadida la protección sobre ruta /books para que solo se pueda ver si el usuario está identificado. Se ha usado redirect en /login
 - Añadida la sección de partituras con su ruta, template y navegación correspondiente
+- Primera version de la secuencia de registrar un nuevo libro. La ruta sigue unos pasos en los que de va aportando información que se guarda
+    en la sesion.
+- Se implementó la posibilidad de volver atrás sin perder la información introducida. Para ello se alimenta el formulario desde la informacion
+    que hay en la sesion en este momento.
+- Probablemente hay que condensar los pasos en solo 2 o 3. Así dejar el resto para la información sobre localización del item.
+- De momento la información no se guarda en la base de datos.
 
 
