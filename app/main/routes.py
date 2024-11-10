@@ -54,6 +54,8 @@ def register():
 
 @bp.route('/logout')
 def logout():
+    usuario = current_user.nombre
     logout_user()
+    flash(f"Se ha cerrado la sesion de {usuario}.")
     return redirect(url_for('main.index'))
 
