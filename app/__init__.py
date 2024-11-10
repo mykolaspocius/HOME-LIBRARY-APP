@@ -27,6 +27,9 @@ def create_app(config_class=Config):
     from app.books import bp as books_bp
     app.register_blueprint(books_bp,url_prefix='/books')
 
+    from app.musicsheets import bp as musicsheets_bp
+    app.register_blueprint(musicsheets_bp,url_prefix='/musicsheets')
+
     # Register some cli commands
     from app.register_commands import register
     register(app)

@@ -11,6 +11,7 @@
         <div>Biblioteca: 
           <a href="{{ url_for('main.index') }}">Inicio</a>
           <a href="{{ url_for('books.index') }}">Libros</a>
+          <a href="{{ url_for('musicsheets.index') }}">Partituras</a>
           {%if current_user.is_anonymous%}
             <a href="{{url_for('main.login')  }}">Login</a>
           {%else%}

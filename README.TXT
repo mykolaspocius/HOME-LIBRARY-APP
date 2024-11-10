@@ -33,5 +33,6 @@
 - Añadida extension Flask-Login
 - Configurado el login y logout de los usuarios usando la anterior extensión
 - Añadida la protección sobre ruta /books para que solo se pueda ver si el usuario está identificado. Se ha usado redirect en /login
+- Añadida la sección de partituras con su ruta, template y navegación correspondiente
 
 
