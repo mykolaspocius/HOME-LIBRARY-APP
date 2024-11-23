@@ -30,6 +30,10 @@ def create_app(config_class=Config):
     from app.musicsheets import bp as musicsheets_bp
     app.register_blueprint(musicsheets_bp,url_prefix='/musicsheets')
 
+    from app.items import bp as items_bp
+    app.register_blueprint(items_bp,url_prefix="/items")
+    
+
     # Register some cli commands
     from app.register_commands import register
     register(app)

@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import SelectField, SelectMultipleField, StringField, PasswordField, BooleanField, SubmitField
+from wtforms import IntegerField,SelectField, SelectMultipleField, StringField, PasswordField, BooleanField, SubmitField
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, EqualTo, Length
 
@@ -23,8 +23,25 @@ class UserRegisterForm(FlaskForm):
 
 class LibroForm(FlaskForm):
     titulo = StringField('Titulo', validators=[CustomDataRequired(),Length(min=1,max=50)])
-    edicion = StringField('Edicion', validators=[Length(min=0,max=20)])
-    genero = SelectField("Genero",validators=[CustomDataRequired()])
-    tema = SelectField("Tema",validators=[CustomDataRequired()])
-    autores = SelectMultipleField("Autores",validators=[CustomDataRequired()])
+    edicion = StringField('Edicion',  validators=[Length(min=0,max=20)])
+    genero = SelectField("Genero",choices=[],validators=[CustomDataRequired()])
+    tema = SelectField("Tema",choices=[],validators=[CustomDataRequired()])
+    autores = SelectMultipleField("Autores",choices=[],validators=[CustomDataRequired()])
     submit = SubmitField('Registrar')
+
+class ItemForm(FlaskForm):
+    padre_id = IntegerField('Id item primario')
+    estado = SelectField('Estado',choices=['original', 'ausente', 'copia'])
+    tipo = SelectField('Tipo',choices=['archivo', 'libro', 'partitura', 'grabacion'])
+    lugar = SelectField("Lugar",choices=['biblioteca', 'otro'])
+    info_lugar = StringField('Descripcion_lugar',validators=[Length(max=70)])
+    descripcion = StringField('Descripcion',validators=[Length(max=200)])
+    estanteria = IntegerField("Estanteria")
+    balda = IntegerField("Balda")
+    carpeta = IntegerField("Carpeta")
+    numero = IntegerField("Numero")
+    digitalizado = BooleanField("Digitalizado")
+    url = StringField("URL",validators=[Length(max=100)])
+    submit = SubmitField('Registrar')
+
+     

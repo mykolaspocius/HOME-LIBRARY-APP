@@ -56,6 +56,7 @@ def new():
         elif step==1:
             session['new_book_data']["step"]=step+1
         elif step==2:
+            form.validate()
             session['new_book_data']["titulo"]=form.titulo.data
             session['new_book_data']["edicion"]=form.edicion.data
             session['new_book_data']["step"]=step+1
@@ -77,8 +78,7 @@ def new():
             session['new_book_data']["autores"]=form.autores.data
             session['new_book_data']["step"]=step+1
         elif step==6:
-            session.pop('new_book_data')
-            return "Datos guardados"
+            return redirect(url_for("items.new"))
         
         session.modified = True
         print(session['new_book_data'])

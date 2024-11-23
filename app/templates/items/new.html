@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+        <h1>Registrar nuevo item {{step}}</h1>
+        <form method="POST" novalidate> {{ form.hidden_tag() }} 
+
+                {% for field in form %}
+                        {% if "CSRF" not in field.label.text %}
+                                <div>{{ field.label }} : {{ field() }}</div>
+                        {%endif%}
+                {% endfor %}
+        </form>
+{% endblock %}
