@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-        <h1>Registrar nuevo item {{step}}</h1>
+        <h1>Compruebe los datos que se van a guardar</h1>
 
         <form method="POST" novalidate> {{ form.hidden_tag() }} 
                 <div>Los datos de: <b>{{item_info.type}}</b> que se van a guardar.</div>
@@ -18,12 +18,26 @@
                           </li>
                         {% endfor %}
                 </ul>
-                <button type="submit" name="back" value="true">Vover a editar datos {{item_info.type}}</button>
-                
+                <button type="submit" name="back_to_info" value="true">Volver a editar datos {{item_info.type}}</button>
+                <div>Los datos de sobre donde se guardara: <b>{{item_info.type}}</b>.</div>
+                <ul>
+                        {% for key, value in item_place_info.data.items() %}
+                          <li>{{ key }}: 
+                                {%  if value is iterable and value is not string %}
+                                        {%for v in value %}
+                                                 {{v}}{% if not loop.last %}, {% endif %}
+                                        {%endfor%}
+                                {%else%}
+                                        {{value}}
+                                {%endif%}
+                          </li>
+                        {% endfor %}
+                </ul>
+                <button type="submit" name="back_to_place" value="true">Volver a editar datos lugar</button>
                 {% for field in form %}
                         {% if "CSRF" not in field.label.text %}
                                 <div>{{ field.label }} : {{ field() }}</div>
                         {%endif%}
-                {% endfor %}
+        {% endfor %}
         </form>
 {% endblock %}

@@ -2,55 +2,23 @@
 
 {% block content %}
         <h1>Registrar nuevo libro {{step}}</h1>
-        <ul>
-                {% for i in range(1,7) %}
-                        {%if i==step%}
-                                <li><b>Paso {{i}}</b></li>
-                        {%else%}
-                                <li>Paso {{i}}</li>
+        <form method="POST" onsubmit="select_ids_with_new_options.forEach(saveChoices)" novalidate> {{ form.hidden_tag() }} 
+
+                {% for field in form %}
+                        {% if "CSRF" not in field.label.text %}
+                                <div>
+                                {{ field.label }} : {{ field(id=field.label.text) }}
+                                {% if field.type == 'SelectField' or field.type == 'SelectMultipleField' %}
+                                        Nuevo {{field.label.text}}: <input type="text" id='nuevo_{{ field.label.text}}'/>
+                                        <button type="button" onclick="addOption(document.getElementById('{{ field.label.text}}'),document.getElementById('nuevo_{{ field.label.text}}'))">Crear</button>
+                                        <input type="hidden" name="{{field.label.text}}_new_choices" id="{{field.label.text}}_new_choices"/>
+                                {% endif %}
+                                </div>
                         {%endif%}
                 {% endfor %}
-        </ul>
-        <form method="POST" novalidate> {{ form.hidden_tag() }} 
-                {% if step == 1 %}
-                        Siga los pasos y proporcione la informacion que se pide
-                {% endif %}
-                {% if step == 2 %}
-                        <div>{{form.titulo.label}} : {{form.titulo()}}</div>
-                        <div>{{form.edicion.label}} : {{form.edicion()}}</div>
-                {% endif %}
-                {% if step == 3 %}
-                        <div>
-                                {{form.genero.label}} : {{form.genero(id="generos")}}
-                                Nuevo genero: <input type="text" id="nuevo_genero"/> 
-                                <input 
-                                    type="button" 
-                                    onclick="addOption(document.getElementById('generos'),document.getElementById('nuevo_genero'))" 
-                                    value="Agregar"
-                                />
-                        </div>
-                {% endif %}
-                {% if step == 4 %}
-                        <div>{{form.tema.label}} : {{form.tema(id="temas")}}
-                        Nuevo tema: <input type="text" id="nuevo_tema"/> 
-                        <input 
-                                type="button" 
-                                onclick="addOption(document.getElementById('temas'),document.getElementById('nuevo_tema'))" 
-                                value="Agregar"
-                        />
-                        </div>
-                {% endif %}
-                {% if step == 5 %}
-                        <div>{{form.autores.label}} : {{form.autores(id="autores")}}</div>
-                {% endif %}
-                <p>
-                        {% if step > 1 %}
-                                <button type="submit" name="back" value="true">Volver</button>
-                        {% endif %}
-                        {{form.submit(value=button_text_value)}}
-                </p>
         </form>
         <script>
+                select_ids_with_new_options = []
                 function addOption(select_field,new_value_field) {
                     new_value = new_value_field.value.trim()
                     if (new_value !== "" && !Array.from(select_field.options).map(option => option.value).some(option => option === new_value)) {
@@ -60,9 +28,18 @@
                         select_field.appendChild(newOption);
                         newOption.selected = true;
                         new_value_field.value = "";
+                        select_ids_with_new_options.push(select_field.id)
                     } else {
                         alert("Option is empty or it already exists");
                     }
                 }
+                function saveChoices(select_id){
+                        const allChoices = Array.from(document.getElementById(select_id).options).map(option => ({
+                                value: option.value,
+                                text: option.textContent,
+                        }));
+                        document.getElementById(select_id +"_new_choices").value = JSON.stringify(allChoices);
+                }
             </script>
 {% endblock %}
+
